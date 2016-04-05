@@ -28,6 +28,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+    Route::get('auth/provider/{provider}', 'Auth\AuthController@redirectToProvider');
+    Route::get('auth/provider/callback/{provider}', 'Auth\AuthController@handleProviderCallback');
 
     Route::get('/home', 'HomeController@index');
 });
